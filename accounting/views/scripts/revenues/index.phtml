@@ -1,0 +1,46 @@
+<!--Body content-->
+<div class="row-fluid">
+	<div class="span4">
+		<h4 class="offset3">Add Revenue</h4>
+		<form id="<?=$this->form->getId()?>" class="<?=$this->form->getAttrib('class')?>" name="<?=$this->form->getName()?>" enctype="<?=$this->form->getEnctype()?>" method="<?=$this->form->getMethod()?>" action="<?=$this->form->getAction()?>">
+			<ul class='unstyled'>
+				<li>
+					<?=$this->form->date?>
+				</li>
+				<li>
+					<?=$this->form->amount?><?=$this->form->currency?>
+				</li>
+				<li>
+					<?=$this->form->description?>
+				</li>
+				<li>
+					<?=$this->form->Add?>
+				</li>
+			</ul>
+		</form>
+	</div>
+	<div class="span8">
+		<h4 class="offset4">Last 10 revenues</h4>
+<?if (!$this->revenueHistory->count()) {?>
+		<div>No Records Available</div>
+<? } else { ?>
+		<table class="table">
+			<tr>
+					<td><b>Date</b></td>
+					<td><b><abbr title="Currency">Cur</abbr></b></td>
+					<td><b>Amount</b></td>
+					<td><b>Description</b></td>
+			</tr>
+<?foreach ($this->revenueHistory as $history) {?>
+			<tr>
+					<td><?=$this->escape($history->formatDate())?></td>
+					<td><?=$this->escape($history->currency)?></td>
+					<td><?=$this->escape($history->formatAmount())?></td>
+					<td><?=$this->escape($history->description)?></td>
+			</tr>
+<? } ?>
+		</table>
+		<div><b><a href="/revenues/history">More...</a></b></div>
+<? } ?>
+	</div>
+</div>

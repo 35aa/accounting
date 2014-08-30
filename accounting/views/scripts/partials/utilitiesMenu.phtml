@@ -1,0 +1,13 @@
+<ul id="utilitiesMenu" class="nav nav-tabs">
+	<li class="<?=$this->action == 'viewPayments' ? 'active' : ''?> 
+						<?=!$this->hasUtilities ? 'disabled' : ''?>">
+		<a href="/utilities/viewPayments" <?=!$this->hasUtilities ? 'onClick="return false;"' : ''?>>View Payments</a>
+	</li>
+	<li class="<?=$this->action == 'addPayment' ? 'active' : ''?> 
+						<?=!$this->hasUtilities ? 'disabled' : ''?>">
+		<a href="/utilities/addPayment" <?=!$this->hasUtilities ? 'onClick="return false;"' : ''?>>Add Payment</a>
+	</li>
+	<li class="<?=$this->action == 'configure' ? 'active' : ''?>">
+		<a href="/utilities/configure">Configure</a>
+	</li>
+</ul>

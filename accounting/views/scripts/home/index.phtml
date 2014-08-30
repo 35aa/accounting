@@ -1,0 +1,52 @@
+<!--Body content-->
+<div class="row-fluid">
+	<div class="span4">
+		<h4 class="offset4">Total Cash</h4>
+<?if ($this->cashBallance->count()) {?>
+		<table class="table">
+		<?foreach($this->cashBallance as $row) {?>
+			<tr>
+				<td><?=$this->escape($row->formatAmount())?> <?=$this->escape($row->currency)?></td>
+			</tr>
+		<? } ?>
+		</table>
+<? } else { ?>
+		<div class="alert alert-info">
+			<strong>Heads up!</strong> Please add your cash ballance.
+		</div>
+<? } ?>
+	</div>
+	<div class="span4">
+		<h4 class="offset5">Bank</h4>
+<?if ($this->bankAccountsBallance->count()) {?>
+		<table class="table">
+		<?foreach($this->bankAccountsBallance as $row) {?>
+			<tr>
+				<td><?=$this->escape($row->name)?></td>
+				<td><?=$this->escape($row->getAmount())?> <?=$this->escape($row->currency)?></td>
+			</tr>
+		<? } ?>
+		</table>
+<? } else { ?>
+		<div class="alert alert-info">
+			<strong>Heads up!</strong> Please add your bank accounts.
+		</div>
+<? } ?>
+	</div>
+	<div class="span4">
+		<h4 class="offset4">Information</h4>
+<?if ($this->negativeBalance) {
+	foreach($this->negativeBalance as $row) {
+?>
+		<div class="alert alert-alert">
+			<strong>Oups!</strong> You have negative cash balance in <?=$row['currency']?>.
+		</div>
+<? }// foreach
+} else { ?>
+		<div class="alert alert-success">
+			<strong>Well done!</strong> Seems to be that all is OK.
+		</div>
+<?}// if?>
+	</div>
+</div>
+

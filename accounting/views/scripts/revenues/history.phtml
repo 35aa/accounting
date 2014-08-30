@@ -1,0 +1,44 @@
+<!--Body content-->
+<div class="row-fluid">
+	<h4 class="offset4">Revenues history</h4>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<form id="<?=$this->form->getId()?>" class="<?=$this->form->getAttrib('class')?>" name="<?=$this->form->getName()?>" enctype="<?=$this->form->getEnctype()?>" method="<?=$this->form->getMethod()?>" action="<?=$this->form->getAction()?>">
+<?=$this->form->limit?>
+<?=$this->form->offset?>
+				<ul class="nav">
+					<li><a href='#' id='limit_10' style="padding-right:5px;padding-left:5px">10</a></li>
+					<li><a href='#' id='limit_25' style="padding-right:5px;padding-left:5px">25</a></li>
+					<li><a href='#' id='limit_50' style="padding-right:5px;padding-left:5px">50</a></li>
+				</ul>
+				<div class="nav">
+<?=$this->form->currency?>
+<?=$this->form->dateFrom?><?=$this->form->dateTo?>
+<?=$this->form->searchString?>
+<?=$this->form->Search?>
+				</div>
+			</form>
+		</div>
+	</div>
+<?if ($this->revenueHistory->count() == 0) {?>
+		<p><b>No data found according to your request.</b></p>
+<? } else {?>
+<?=$this->render('partials/paginator.phtml')?>
+		<table class="table">
+			<tr>
+				<td><b>Date</b></td>
+				<td><b>Currency</b></td>
+				<td><b>Amount</b></td>
+				<td><b>Description</b></td>
+			</tr>
+<?foreach ($this->revenueHistory as $row) {?>
+			<tr>
+				<td><?=$row->formatDate()?></td>
+				<td><?=$row->currency?></td>
+				<td><?=$row->formatAmount()?></td>
+				<td><?=$this->escape($row->description)?></td>
+			</tr>
+<? } // end foreach ?>
+		</table>
+<? } //end if?>
+</div>

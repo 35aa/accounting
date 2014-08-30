@@ -1,0 +1,97 @@
+<?=$this->render('partials/bankMenu.phtml')?>
+<div class="" id="account">
+	<!-- Modal Account Add -->
+	<div id="bankDataAdd" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="bankDataAddLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="bankDataAddLabel">Add Account</h3>
+		</div>
+		<form id="<?=$this->addAccountForm->getId()?>" class="<?=$this->addAccountForm->getAttrib('class')?>" name="<?=$this->addAccountForm->getName()?>" enctype="<?=$this->addAccountForm->getEnctype()?>" method="<?=$this->addAccountForm->getMethod()?>" action="<?=$this->addAccountForm->getAction()?>">
+			<div class="modal-body">
+				<ul class='unstyled'>
+					<li>
+						<?=$this->addAccountForm->name?>
+					</li>
+					<li>
+						<?=$this->addAccountForm->type?>
+					</li>
+				<ul class='unstyled' id="cardForm" style="display:none;">
+					<li>
+						<?=$this->addAccountForm->card_type?><?=$this->addAccountForm->card_trunk?>
+					</li>
+				</ul>
+					<li>
+						<?=$this->addAccountForm->currency?>
+					</li>
+					<li>
+						<?=$this->addAccountForm->account_amount?>
+					</li>
+					<li>
+						<?=$this->addAccountForm->bank_id?>
+					</li>
+					<li>
+						<?=$this->addAccountForm->description?>
+					</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<?=$this->addAccountForm->Add?>
+			</div>
+		</form>
+	</div>
+	<!-- Modal Account Add End-->
+	<div class="span12 no-margin">
+		<div class="span12">
+			<a href="#bankDataAdd" role="button" class="btn" data-toggle="modal" style="float:left;clear:both;margin-top:5px;" onClick="loadBankNames($('#bank_id'));jQuery('#testName').focus();">Create new bank account</a><h4 class="offset5">Bank Data</h4>
+		</div>
+<?if ($this->bankData->count()) {?>
+		<table class="table">
+			<tr>
+					<td><b>Name</b></td>
+					<td><b>Type</b></td>
+					<td><b>Card Type</b></td>
+					<td><b>Card Trunk</b></td>
+					<td><b>Bank</b></td>
+					<td><b>Amount</b></td>
+					<td><b>Currency</b></td>
+					<td><b>Description</b></td>
+					<td><b>Action</b></td>
+			</tr>
+<?foreach($this->bankData as $row) {?>
+			<tr>
+					<td><?=$this->escape($row->name)?></td>
+					<td><?=$this->escape($row->type)?></td>
+					<td><?if ($row->isCardAccount()) {echo $this->escape($row->getCardType());} else {echo '---';}?></td>
+					<td><?if ($row->isCardAccount()) {echo $this->escape($row->getCardTrunk());} else {echo '---';}?></td>
+					<td><?=$this->escape($row->getBankName())?></td>
+					<td><?=$this->escape($row->getAmount())?></td>
+					<td><?=$this->escape($row->currency)?></td>
+					<td><?=$this->escape($row->description)?></td>
+					<td>
+						<div class="btn-group">
+							<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-chevron-down"></i></button>
+							<ul class="dropdown-menu">
+								<li><a href="/bank/addPayments?id=<?=$row->id?>">New payment</a></li>
+								<li><a href="/bank/closeAccount?id=<?=$row->id?>">Close account</a></li>
+							</ul>
+						</div>
+					</td>
+			</tr>
+<? } //foreach end?>
+		</table>
+<? } else { ?>
+		<p>No records found.</p>
+<? } ?>
+	</div>
+</div>
+<?if ($this->showForm) {?>
+<script>
+	$('#bankDataAdd').modal('show');
+</script>
+<? } ?>
+<? if ($this->addAccountForm->type->getValue()) {?>
+<script>
+	$('#cardForm').show();
+</script>
+<? } ?>

@@ -1,0 +1,47 @@
+<!--Body content-->
+<div class="row-fluid">
+	<div class="span4">
+		<h4 class="offset3">Add Exchange</h4>
+		<form id="<?=$this->form->getId()?>" class="<?=$this->form->getAttrib('class')?>" name="<?=$this->form->getName()?>" enctype="<?=$this->form->getEnctype()?>" method="<?=$this->form->getMethod()?>" action="<?=$this->form->getAction()?>">
+			<ul class='unstyled'>
+				<li>
+					<?=$this->form->date?>
+				</li>
+				<li>
+					<?=$this->form->amountFrom?><?=$this->form->currencyFrom?>
+				</li>
+				<li>
+					<?=$this->form->amountTo?><?=$this->form->currencyTo?>
+				</li>
+				<li>
+					<?=$this->form->description?>
+				</li>
+				<li>
+					<?=$this->form->Add?>
+				</li>
+			</ul>
+		</form>
+	</div>
+	<div class="span8">
+		<h4 class="offset4">Last 10 exchanges</h4>
+<?if (!$this->exchangesHistory->count()) {?>
+		<div>No Records Available</div>
+<? } else { ?>
+		<table class="table">
+			<tr>
+					<td><b>Date</b></td>
+					<td><b>Rate</b></td>
+					<td><b>Description</b></td>
+			</tr>
+<?foreach ($this->exchangesHistory as $history) {?>
+			<tr>
+					<td><?=$this->escape($history->formatDate())?></td>
+					<td nowrap><?=$this->escape($history->getRate())?></td>
+					<td><?=$this->escape($history->description)?></td>
+			</tr>
+<? } ?>
+		</table>
+		<div><b><a href="/exchanges/history">More...</a></b></div>
+<? } ?>
+	</div>
+</div>

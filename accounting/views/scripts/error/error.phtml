@@ -1,0 +1,7 @@
+<div class="wrapper">
+	<h3>An error occurred</h3>
+	<?=nl2br($this->friendly_error_message)?>
+	<?if ($this->__isset('error_message')) {?>
+		<pre><?= $this->error_message?></pre>
+	<?}?>
+</div>

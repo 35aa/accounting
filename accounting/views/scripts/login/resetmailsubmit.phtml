@@ -1,0 +1,23 @@
+<?if ($this->__isset('form')) { ?>
+<form id="<?=$this->form->getId()?>" name="<?=$this->form->getName()?>" enctype="<?=$this->form->getEnctype()?>" method="<?=$this->form->getMethod()?>" action="<?=$this->form->getAction()?>">
+	<legend>Reset password</legend>
+	<table>
+		<tr>
+			<td><?=$this->form->password?></td>
+		</tr>
+		<tr>
+			<td><?=$this->form->password_confirm?></td>
+		</tr>
+		<tr>
+			<td><?=$this->form->member_id?></td>
+		</tr>
+		<tr>
+			<td><?=$this->form->changepassword?></td>
+		</tr>
+	</table>
+</form>
+
+<? } else {?>
+	<p>Oups! Something went wrong.</p>
+<?}?>
+

@@ -1,0 +1,26 @@
+<?
+if ($this->__isset('isAuthenticated') && $this->isAuthenticated) {
+?>
+<div id="sidebar" class="well span2" style="max-width: 340px; padding: 8px 0;">
+	<!--Sidebar content-->
+	<ul class="nav nav-list">
+		<li class="nav-header">Navigation</li>
+		<li <?=$this->controller == 'home' ? 'class="active"' : ''?>><a href="/"><i class="icon-home"></i>Home</a></li>
+		<li class="divider"></li>
+		<li <?=$this->controller == 'revenues' ? 'class="active"' : ''?>><a href="/revenues"><i class="icon-plus"></i>Revenue</a></li>
+		<li <?=$this->controller == 'expenses' ? 'class="active"' : ''?>><a href="/expenses"><i class="icon-minus"></i>Expenses</a></li>
+		<li class="divider"></li>
+		<li <?=$this->controller == 'bank' ? 'class="active"' : ''?>><a href="/bank"><i class="icon-briefcase"></i>Bank</a></li>
+		<li <?=$this->controller == 'exchanges' ? 'class="active"' : ''?>><a href="/exchanges"><i class="icon-retweet"></i>Exchanges</a></li>
+		<li class="divider"></li>
+		<li <?=$this->controller == 'utilities' ? 'class="active"' : ''?>><a href="/utilities"><i class="icon-list-alt"></i>Utilities</a></li>
+		<li <?=$this->controller == 'goal' ? 'class="active"' : ''?>><a href="/goal"><i class="icon-star"></i>Goals</a></li>
+		<li <?=$this->controller == 'budget' ? 'class="active"' : ''?>><i class="icon-file"></i>Budget</li>
+		<li class="divider"></li>
+		<li>
+			<a href="/logout"><i class="icon-off"></i>Log out</a>
+		</li>
+	</ul>
+</div>
+<?}?>
+

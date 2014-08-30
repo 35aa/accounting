@@ -1,0 +1,117 @@
+<!--Body content-->
+<div class="row-fluid">
+	<!-- Modal Account Add -->
+	<div id="goalAdd" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="goalAddLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="goalAddLabel">Add Goal</h3>
+		</div>
+		<form id="<?=$this->form->getId()?>" class="<?=$this->form->getAttrib('class')?>" name="<?=$this->form->getName()?>" enctype="<?=$this->form->getEnctype()?>" method="<?=$this->form->getMethod()?>" action="<?=$this->form->getAction()?>">
+			<div class="modal-body">
+				<ul class='unstyled'>
+					<li>
+						<?=$this->form->name?>
+					</li>
+					<li>
+						<?=$this->form->description?>
+					</li>
+					<li>
+						<?=$this->form->amount?>
+					</li>
+					<li>
+						<?=$this->form->bank_account_id?> <?=$this->form->currency?>
+					</li>
+					<li>
+						<?=$this->form->end_date?>
+					</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<?=$this->form->Add?>
+			</div>
+		</form>
+	</div>
+	<!-- Modal Account Add End-->
+
+	<!-- Modal Account Add -->
+	<div id="addGoalCashData" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="addGoalCashDataAddLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="addGoalCashDataAddLabel">Add cash to Goal</h3>
+		</div>
+		<form id="<?=$this->addGoalCashForm->getId()?>" class="<?=$this->addGoalCashForm->getAttrib('class')?>" name="<?=$this->addGoalCashForm->getName()?>" enctype="<?=$this->addGoalCashForm->getEnctype()?>" method="<?=$this->addGoalCashForm->getMethod()?>" action="<?=$this->addGoalCashForm->getAction()?>">
+			<div class="modal-body">
+				<ul class='unstyled'>
+					<li>
+						<?=$this->addGoalCashForm->goal_id?>
+					</li>
+					<li>
+						<?=$this->addGoalCashForm->amount?>
+					</li>
+				</ul>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<?=$this->addGoalCashForm->Add?>
+			</div>
+		</form>
+	</div>
+	<!-- Modal Account Add End-->
+
+<div class="span12 no-margin">
+	<a href="#goalAdd" role="button" class="btn" data-toggle="modal" style="float:left;clear:both;margin-top:5px;">New goal</a>
+	<h4 class="offset5">Goal List</h4>
+</div>
+<?if ($this->goalData->count()) {?>
+<table class="table">
+	<tr>
+		<td><b>Name</b></td>
+		<td><b>Exp Date</b></td>
+		<td><b>Goal amount</b></td>
+		<td><b>Current amount</b></td>
+		<td><b>Bank account</b></td>
+		<td><b>Description</b></td>
+		<td><b>Action</b></td>
+	</tr>
+<?foreach($this->goalData as $goal) {?>
+	<tr>
+		<td><?=$this->escape($goal->name)?></td>
+		<td><?=$this->escape($goal->getGoalDate())?></td>
+		<td><?=$this->escape($goal->amount)?> <?=$this->escape($goal->getBankAccountsCurrency())?></td>
+		<td><?=$this->escape($goal->getGoalCurrentAmount())?> <?=$this->escape($goal->getBankAccountsCurrency())?></td>
+		<td><?=$this->escape($goal->getBankAccountsNames())?></td>
+		<td><?=$this->escape($goal->description)?></td>
+		<td>
+			<div class="btn-group">
+				<button class="btn dropdown-toggle" data-toggle="dropdown"><i class="icon-chevron-down"></i></button>
+				<ul class="dropdown-menu">
+					<li><a href="/goal/detail?id=<?=$goal->id?>">Detail</a></li>
+<?php if ($this->escape($goal->getBankAccountsNames()) == 'Cash') {?>
+					<li><a onclick="document.getElementById('goal_id').value=<?=$goal->id?>" href="#addGoalCashData" data-toggle="modal">Add cash</a></li>
+<?php } else { ?>
+					<li><a href="/bank/addPayments?id=<?=$this->escape($goal->getBankAccountsIds())?>" data-toggle="modal">Add cash</a></li>
+<?php } ?>
+					<li><a href="/goal/deleteGoal?id=<?=$goal->id?>">Delete</a></li>
+				</ul>
+			</div>
+		</td>
+	</tr>
+<? } //foreach end?>
+</table>
+<? } else { ?>
+		<div class="row-fluid" style="padding-top: 50px;">
+			<div class="span12 no-margin">
+				<p>No records found.</p>
+			</div>
+		</div>
+
+<? } ?>
+
+</div>
+
+<?if ($this->showForm) {?>
+<script>
+	$('#goalAdd').modal('show');
+</script>
+<? } ?>

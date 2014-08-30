@@ -1,0 +1,92 @@
+<?=$this->render('partials/utilitiesMenu.phtml')?>
+<div class="tab-content">
+	<!-- Modal Account Add -->
+	<div id="providerAdd" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="providerAddLabel" aria-hidden="true" style="width:250px;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="accountAddLabel">Add Provider</h3>
+		</div>
+
+		<form id="<?=$this->form->getId()?>" class="<?=$this->form->getAttrib('class')?>" name="<?=$this->form->getName()?>" enctype="<?=$this->form->getEnctype()?>" method="<?=$this->form->getMethod()?>" action="<?=$this->form->getAction()?>">
+			<div class="modal-body">
+				<ul class="unstyled">
+					<li>
+<?=$this->form->utility?>
+					</li>
+<?if ($this->form->providers) {?>
+					<li>
+<?=$this->form->providers?>
+					</li>
+					<li>
+						<b>or enter new</b>
+					</li>
+<? } ?>
+					<li>
+<?=$this->form->name?>
+					</li>
+					<li>
+<?=$this->form->description?>
+					</li>
+					<li>
+<label>Active: <?=$this->form->active?></label>
+					</li>
+<?/*?>
+					<li>
+<label>Add meter: <?=$this->form->addMeter?></label>
+					</li>
+				</ul>
+				<ul class="unstyled" id="meterForm" style="display:none;">
+					<li>
+<?=$this->form->nameMeter?>
+					</li>
+					<li>
+<?=$this->form->descriptionMeter?>
+					</li>
+*/?>
+				</ul>
+			</div>
+			<div class="modal-footer">
+<?=$this->form->Add?>
+			</div>
+		</form>
+	</div>
+<!-- Modal Account Add -->
+
+	<div class="span12 no-margin">
+		<div class="span12">
+			<a href="#providerAdd" role="button" class="btn" data-toggle="modal" style="float:left;clear:both;margin-top:5px;">Add Provider</a><h4 class="offset5">Providers</h4>
+		</div>
+<?if ($this->providers->count()) {?>
+		<table class="table">
+			<tr>
+				<td><b>Utility</b></td>
+				<td><b>Provider</b></td>
+				<td><b>Description</b></td>
+				<td><b>Active</b></td>
+				<td></td>
+			</tr>
+<?foreach ($this->providers as $provider) {?>
+			<tr>
+				<td><?=$this->escape($provider->utility_name)?></td>
+				<td><?=$this->escape($provider->name)?></td>
+				<td><?=$this->escape($provider->description)?></td>
+				<td><?=$provider->active ? 'Yes' : 'No'?></td>
+				<td><a href="/utilities/removeProviderReference?id=<?=$provider->reference_id?>">Remove</a></td>
+			</tr>
+<? } //foreach end?>
+		</table>
+<? } else { ?>
+		<p>No records found.</p>
+<? } ?>
+	</div>
+
+<?if ($this->showForm) {?>
+<script>
+	$('#providerAdd').modal('show');
+</script>
+<? } ?>
+<?/*if ($this->form->addMeter->getValue()) {?>
+<script>
+	$('#meterForm').show();
+</script>
+<? }*/ ?>

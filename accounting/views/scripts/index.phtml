@@ -1,0 +1,33 @@
+<?= $this->doctype() ?>
+<?= $this->headTitle('Accounting') ?>
+<?= $this->headLink()->appendStylesheet('https://maxcdn.bootstrapcdn.com/bootstrap/2.2.2/css/bootstrap.min.css')
+										 ->appendStylesheet('/css/main.css')
+										 ->appendStylesheet('http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css')?>
+<?= $this->headScript()->appendFile('http://code.jquery.com/jquery-1.8.3.js')
+											 ->appendFile('http://code.jquery.com/ui/1.10.0/jquery-ui.js')
+											 ->appendFile('/js/jQuery/json/jquery.json-2.4.min.js')
+											 ->appendFile('https://maxcdn.bootstrapcdn.com/bootstrap/2.2.2/js/bootstrap.min.js')
+ 											 ->appendFile('/js/main.js')
+											 ->appendFile('/js/api.js') ?>
+<?= $this->headMeta()->appendHttpEquiv('Content-Type','text/html; charset=UTF-8');?>
+</head>
+<body>
+<div class="container">
+<?=$this->render("partials/header.phtml");?>
+
+<div class="container-fluid no-padding">
+	<div class="row-fluid">
+
+<?=$this->render('partials/sidebar.phtml')?>
+
+		<div id="content" <?=$this->__isset('isAuthenticated') && $this->isAuthenticated ? 'class="span10"' : ''?>>
+<?=$this->layout()->content;?>
+		</div>
+
+	</div>
+</div>
+	<hr>
+<?= $this->render("partials/footer.phtml")?>
+</div>
+</body>
+</html>

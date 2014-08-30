@@ -1,0 +1,28 @@
+<?=$this->render('partials/utilitiesMenu.phtml')?>
+<div class="tab-content">
+	<div class="tab-pane active in" id="addPayment">
+		<h4 class="offset3">Add Utility Payment</h4>
+		<form id="<?=$this->form->getId()?>" name="<?=$this->form->getName()?>" enctype="<?=$this->form->getEnctype()?>" method="<?=$this->form->getMethod()?>" action="<?=$this->form->getAction()?>">
+			<ul class='unstyled'>
+				<li>
+<?=$this->form->utilityProvider?>
+				</li>
+				<li>
+<?=$this->form->amount?><?=$this->form->currency?>
+				</li>
+				<li>
+For period:
+				</li>
+				<li>
+<?=$this->form->dateFrom?> - <?=$this->form->dateTo?>
+				</li>
+				<li>
+<?=$this->form->description?>
+				</li>
+				<li>
+<?=$this->form->Add?>
+				</li>
+			</ul>
+		</form>
+	</div>
+</div>

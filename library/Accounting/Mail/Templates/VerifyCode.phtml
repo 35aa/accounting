@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+<body>
+<p>Доброго дня <?=$this->member->nickname?>.</p>
+<p>Ви отримали даного листа, оскільки Вашу e-mail адресу було вказано при рестрації аккаунта на сервісі: <a href="http://g44.mydev.org.ua">g44</a></p>
+<p>Вам потібно завершити активацію Вашого акаунта. Для цього виберіть один із способів:</p>
+<ol>
+<li>Перейти за наступною адресою:</li>
+<p>http://g44.mydev.org.ua/register/verifysubmit/?code=<?=$this->verifyCode->verify_key?>&id=<?=$this->verifyCode->member_id?>. Після цього активація акаунта буде завершено.</p>
+<li>Перейти за наступною адресою:</li>
+<p>http://g44.mydev.org.ua/register/verify/?id=<?=$this->verifyCode->member_id?> і ввести наступний код <?=$this->verifyCode->verify_key?> в поле "Активаційний Код" і натиснути "Підтвердити".</p>
+</ol>
+<p>У випадку якщо Ви не реструвались, проігноруйте цей лист і видаліть його!</p>
+<p>Дякуємо за увагу.<br>
+З повагою, Адміністрація ресурсу.</p>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<div id="header" class="page-header">
+	<div class="span6 no-margin">
+		<h1><a href="/">Accounting</a></h1>
+<?if (!$this->__isset('isAuthenticated') || !$this->isAuthenticated) {?>
+		<p class="lead">Crisp like a new sheet of paper.</p>
+<?}?>
+	</div>
+<?if (!$this->__isset('isAuthenticated') || !$this->isAuthenticated) {?>
+		<ul class="nav nav-pills pull-right">
+			<li>
+				<a href="/register/">Sign up</a>
+			</li>
+			<li>
+				<a href="/login/">Log in</a>
+			</li>
+		</ul>
+<? } ?>
+	<div class="clear"></div>
+</div>

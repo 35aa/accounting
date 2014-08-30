@@ -1,0 +1,43 @@
+@charset "utf-8";
+
+.height100 {height:100px;}
+
+.margin-top40 {margin-top:40;}
+
+.no-margin {margin:0 !important;}
+.no-padding {padding:0 !important;}
+
+.clear {clear:both;}
+
+.inline-label {display:inline;}
+
+.recaptcha_nothad_incorrect_sol {margin-bottom:10px;}
+
+.form-alert {list-style-type: none;margin-left:0;padding:8px;}
+
+.textarea-height100 {height:100px;}
+
+.textarea-height200 {height:200px;}
+
+.nav-list [class^="icon-"],
+.nav-list [class*=" icon-"] {
+	margin-right: 4px;
+}
+
+.width140 {
+	width:140px;
+}
+
+/*quick search bar start*/
+
+.navbar { margin-bottom: 0; }
+
+.navbar-inner { padding: 0 10px; }
+
+.pager { margin: 10px 0; }
+
+/*quick search bar end*/
+
+.modal-body {
+	overflow-y: visible;
+}
